@@ -68,3 +68,17 @@ class CyclomaticComplexityAjustableChecker:
                 self._error_message_template.format(actual_complexity, max_expected_complexity),
                 type(self),
             )
+
+    @classmethod
+    def add_options(cls, parser) -> None:
+        parser.add_option(
+            '--max-complexity',
+            type=int,
+            parse_from_config=True,
+            help='Max complexity',
+            default=cls.DEFAULT_MAX_MCCABE_COMPLEXITY,
+        )
+
+    @classmethod
+    def parse_options(cls, options) -> None:
+        cls.DEFAULT_MAX_MCCABE_COMPLEXITY = int(options.max_complexity)
