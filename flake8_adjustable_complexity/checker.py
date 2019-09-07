@@ -72,13 +72,13 @@ class CyclomaticComplexityAjustableChecker:
     @classmethod
     def add_options(cls, parser) -> None:
         parser.add_option(
-            '--max-complexity',
+            '--max-mccabe-complexity',
             type=int,
             parse_from_config=True,
-            help='Max complexity',
+            help='Max mccabe complexity',
             default=cls.DEFAULT_MAX_MCCABE_COMPLEXITY,
         )
 
     @classmethod
     def parse_options(cls, options) -> None:
-        cls.DEFAULT_MAX_MCCABE_COMPLEXITY = int(options.max_complexity)
+        cls.DEFAULT_MAX_MCCABE_COMPLEXITY = int(options.max_mccabe_complexity)
