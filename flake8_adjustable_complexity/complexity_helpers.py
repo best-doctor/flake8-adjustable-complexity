@@ -10,7 +10,7 @@ from flake8_adjustable_complexity.ast_helpers import get_all_funcdefs_from, \
 def validate_adjustable_complexity_in_tree(
     tree: ast.AST,
     var_names_blacklist: Set[str],
-    default_max_complexity: int,
+    max_complexity: int,
     bad_var_name_penalty: int,
     allow_single_names_in_vars: bool,
     single_letter_var_whitelist: Optional[List[str]] = None,
@@ -20,7 +20,7 @@ def validate_adjustable_complexity_in_tree(
         error_in_funcdef = check_funcdef_adjustable_complexity(
             funcdef,
             var_names_blacklist,
-            default_max_complexity,
+            max_complexity,
             bad_var_name_penalty,
             allow_single_names_in_vars,
             single_letter_var_whitelist,
