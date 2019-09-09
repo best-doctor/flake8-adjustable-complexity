@@ -14,7 +14,7 @@ class CyclomaticComplexityAjustableChecker:
     ALLOW_SINGLE_NAMES_IN_VARS = False
     DEFAULT_MAX_MCCABE_COMPLEXITY = 7
 
-    max_mccabe_complexity = None
+    max_mccabe_complexity = 0
 
     VAR_NAMES_BLACKLIST = {
         # from https://github.com/wemake-services/wemake-python-styleguide/
