@@ -16,6 +16,8 @@ separately. Default is 7 and it is decreased by 2 for each variable from
 blacklist inside the function. If actual complexity overcomes max calculated
 complexity, the plugin reports an error.
 
+Max allowed cyclomatic complexity can be configured via `--max-mccabe-complexity` option.
+
 ## Installation
 
     pip install flake8-adjustable-complexity

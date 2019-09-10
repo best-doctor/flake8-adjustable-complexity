@@ -10,9 +10,11 @@ class CyclomaticComplexityAjustableChecker:
 
     _error_message_template = 'CCE001 is too complex ({0} > {1})'
 
-    DEFAULT_MAX_MCCABE_COMPLEXITY = 7
     BAD_VAR_NAME_PENALTY = 2
     ALLOW_SINGLE_NAMES_IN_VARS = False
+    DEFAULT_MAX_MCCABE_COMPLEXITY = 7
+
+    max_mccabe_complexity = 0
 
     VAR_NAMES_BLACKLIST = {
         # from https://github.com/wemake-services/wemake-python-styleguide/
@@ -55,7 +57,7 @@ class CyclomaticComplexityAjustableChecker:
         too_difficult_functions = validate_adjustable_complexity_in_tree(
             self.tree,
             var_names_blacklist=self.VAR_NAMES_BLACKLIST,
-            default_max_complexity=self.DEFAULT_MAX_MCCABE_COMPLEXITY,
+            max_complexity=self.max_mccabe_complexity,
             bad_var_name_penalty=self.BAD_VAR_NAME_PENALTY,
             allow_single_names_in_vars=self.ALLOW_SINGLE_NAMES_IN_VARS,
             single_letter_var_whitelist=self.SINGLE_LETTER_VAR_WHITELIST,
@@ -68,3 +70,17 @@ class CyclomaticComplexityAjustableChecker:
                 self._error_message_template.format(actual_complexity, max_expected_complexity),
                 type(self),
             )
+
+    @classmethod
+    def add_options(cls, parser) -> None:
+        parser.add_option(
+            '--max-mccabe-complexity',
+            type=int,
+            parse_from_config=True,
+            help='Max mccabe complexity',
+            default=cls.DEFAULT_MAX_MCCABE_COMPLEXITY,
+        )
+
+    @classmethod
+    def parse_options(cls, options) -> None:
+        cls.max_mccabe_complexity = int(options.max_mccabe_complexity)
