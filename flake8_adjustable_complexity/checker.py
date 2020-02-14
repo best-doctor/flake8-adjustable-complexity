@@ -8,7 +8,7 @@ class CyclomaticComplexityAjustableChecker:
     name = 'flake8-adjustable-complexity'
     version = version
 
-    _error_message_template = 'CCE001 is too complex ({0} > {1})'
+    _error_message_template = 'CAC001 is too complex ({0} > {1})'
 
     BAD_VAR_NAME_PENALTY = 2
     ALLOW_SINGLE_NAMES_IN_VARS = False
