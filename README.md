@@ -41,7 +41,7 @@ Usage:
 
 ```terminal
 $ flake8 test.py
-test.py:1:1: CCE001 is too complex (4 > 1)
+test.py:1:1: CAC001 is too complex (4 > 1)
 ```
 
 Tested on Python 3.7.2 and flake8 3.5.0.

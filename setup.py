@@ -32,7 +32,7 @@ setup(
     install_requires=['setuptools'],
     entry_points={
         'flake8.extension': [
-            'CCE001 = flake8_adjustable_complexity.checker:CyclomaticComplexityAjustableChecker',
+            'CAC001 = flake8_adjustable_complexity.checker:CyclomaticComplexityAjustableChecker',
         ],
     },
     url='https://github.com/best-doctor/flake8-adjustable-complexity',
