@@ -16,12 +16,14 @@ separately. Default is 7 and it is decreased by 2 for each variable from
 blacklist inside the function. If actual complexity overcomes max calculated
 complexity, the plugin reports an error.
 
-Max allowed cyclomatic complexity can be configured via `--max-mccabe-complexity` option.
+Max allowed cyclomatic complexity can be configured via
+`--max-mccabe-complexity` option.
 
 ## Installation
 
-    pip install flake8-adjustable-complexity
-
+```terminal
+pip install flake8-adjustable-complexity
+```
 
 ## Example
 
@@ -44,20 +46,21 @@ $ flake8 test.py
 test.py:1:1: CAC001 is too complex (4 > 1)
 ```
 
-Tested on Python 3.7.2 and flake8 3.5.0.
-
-
 ## Contributing
 
 We would love you to contribute to our project. It's simple:
 
-1. Create an issue with bug you found or proposal you have. Wait for approve from maintainer.
-2. Create a pull request. Make sure all checks are green.
-3. Fix review comments if any.
-4. Be awesome.
+1. Create an issue with bug you found or proposal you have.
+   Wait for approve from maintainer.
+1. Create a pull request. Make sure all checks are green.
+1. Fix review comments if any.
+1. Be awesome.
 
 Here are useful tips:
 
-- You can run all checks and tests with `make check`. Please do it before TravisCI does.
-- We use [BestDoctor python styleguide](https://github.com/best-doctor/guides/blob/master/guides/python_styleguide.md). Sorry, styleguide is available only in Russian for now.
-- We respect [Django CoC](https://www.djangoproject.com/conduct/). Make soft, not bullshit.
+- You can run all checks and tests with `make check`.
+  Please do it before TravisCI does.
+- We use [BestDoctor python styleguide](https://github.com/best-doctor/guides/blob/master/guides/python_styleguide.md).
+  Sorry, styleguide is available only in Russian for now.
+- We respect [Django CoC](https://www.djangoproject.com/conduct/).
+  Make soft, not bullshit.

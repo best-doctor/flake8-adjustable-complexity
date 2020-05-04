@@ -5,16 +5,9 @@ from flake8_adjustable_complexity.complexity_helpers import validate_adjustable_
 
 
 class CyclomaticComplexityAjustableChecker:
-    name = 'flake8-adjustable-complexity'
-    version = version
-
-    _error_message_template = 'CAC001 is too complex ({0} > {1})'
-
     BAD_VAR_NAME_PENALTY = 2
     ALLOW_SINGLE_NAMES_IN_VARS = False
     DEFAULT_MAX_MCCABE_COMPLEXITY = 7
-
-    max_mccabe_complexity = 0
 
     VAR_NAMES_BLACKLIST = {
         # from https://github.com/wemake-services/wemake-python-styleguide/
@@ -48,6 +41,13 @@ class CyclomaticComplexityAjustableChecker:
         'handler',
     }
     SINGLE_LETTER_VAR_WHITELIST = ['_']
+
+    name = 'flake8-adjustable-complexity'
+    version = version
+
+    _error_message_template = 'CAC001 is too complex ({0} > {1})'
+
+    max_mccabe_complexity = 0
 
     def __init__(self, tree, filename: str):
         self.filename = filename

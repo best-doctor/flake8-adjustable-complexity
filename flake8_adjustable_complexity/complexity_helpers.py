@@ -3,8 +3,10 @@ from typing import Optional, List, Tuple, Set
 
 import mccabe
 
-from flake8_adjustable_complexity.ast_helpers import get_all_funcdefs_from, \
-    extract_all_vars_in_node
+from flake8_adjustable_complexity.ast_helpers import (
+    get_all_funcdefs_from,
+    extract_all_vars_in_node,
+)
 
 
 def validate_adjustable_complexity_in_tree(
