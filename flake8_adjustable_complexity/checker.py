@@ -53,6 +53,20 @@ class CyclomaticComplexityAjustableChecker:
         self.filename = filename
         self.tree = tree
 
+    @classmethod
+    def add_options(cls, parser) -> None:
+        parser.add_option(
+            '--max-mccabe-complexity',
+            type=int,
+            parse_from_config=True,
+            help='Max mccabe complexity',
+            default=cls.DEFAULT_MAX_MCCABE_COMPLEXITY,
+        )
+
+    @classmethod
+    def parse_options(cls, options) -> None:
+        cls.max_mccabe_complexity = int(options.max_mccabe_complexity)
+
     def run(self) -> Generator[Tuple[int, int, str, type], None, None]:
         too_difficult_functions = validate_adjustable_complexity_in_tree(
             self.tree,
@@ -70,17 +84,3 @@ class CyclomaticComplexityAjustableChecker:
                 self._error_message_template.format(actual_complexity, max_expected_complexity),
                 type(self),
             )
-
-    @classmethod
-    def add_options(cls, parser) -> None:
-        parser.add_option(
-            '--max-mccabe-complexity',
-            type=int,
-            parse_from_config=True,
-            help='Max mccabe complexity',
-            default=cls.DEFAULT_MAX_MCCABE_COMPLEXITY,
-        )
-
-    @classmethod
-    def parse_options(cls, options) -> None:
-        cls.max_mccabe_complexity = int(options.max_mccabe_complexity)
