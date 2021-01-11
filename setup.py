@@ -30,6 +30,14 @@ setup(
     author='Ilya Lebedev',
     author_email='melevir@gmail.com',
     install_requires=['setuptools'],
+    classifiers=[
+        'Framework :: Pytest',
+        'Topic :: Software Development :: Testing',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+    ],
     entry_points={
         'flake8.extension': [
             'CAC001 = flake8_adjustable_complexity.checker:CyclomaticComplexityAjustableChecker',
