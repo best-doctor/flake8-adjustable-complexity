@@ -4,7 +4,7 @@ from typing import Optional, List, Tuple, Set
 import mccabe
 
 from flake8_adjustable_complexity.ast_helpers import (
-    get_all_funcdefs_from,
+    FuncDef, get_all_funcdefs_from,
     extract_all_vars_in_node,
 )
 
@@ -16,7 +16,7 @@ def validate_adjustable_complexity_in_tree(
     bad_var_name_penalty: int,
     allow_single_names_in_vars: bool,
     single_letter_var_whitelist: Optional[List[str]] = None,
-) -> List[Tuple[ast.AST, int, int]]:
+) -> List[Tuple[FuncDef, int, int]]:
     errors = []
     for funcdef in get_all_funcdefs_from(tree):
         error_in_funcdef = check_funcdef_adjustable_complexity(
@@ -33,13 +33,13 @@ def validate_adjustable_complexity_in_tree(
 
 
 def check_funcdef_adjustable_complexity(
-    funcdef: ast.FunctionDef,
+    funcdef: FuncDef,
     var_names_blacklist: Set[str],
     default_max_complexity: int,
     bad_var_name_penalty: int,
     allow_single_names_in_vars: bool,
     single_letter_var_whitelist: Optional[List[str]] = None,
-) -> Optional[Tuple[ast.AST, int, int]]:
+) -> Optional[Tuple[FuncDef, int, int]]:
     single_letter_var_whitelist = single_letter_var_whitelist or []
     funcdef_vars = extract_all_vars_in_node(funcdef)
     vars_from_blacklist_amount = sum(1 for v in funcdef_vars if v in var_names_blacklist)
@@ -51,8 +51,7 @@ def check_funcdef_adjustable_complexity(
         )
     max_allowed_cyclomatic_complexity = (
         default_max_complexity
-        - bad_var_name_penalty
-        * vars_from_blacklist_amount
+        - bad_var_name_penalty * vars_from_blacklist_amount
         - additional_penalty
     )
     current_mccabe_complexity = get_mccabe_complexity_for(funcdef)
