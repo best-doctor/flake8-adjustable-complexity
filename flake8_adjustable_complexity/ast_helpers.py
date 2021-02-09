@@ -3,8 +3,10 @@ from typing import List, Union
 
 from flake8_adjustable_complexity.list_helpers import flat
 
+FuncDef = Union[ast.FunctionDef, ast.AsyncFunctionDef]
 
-def get_all_funcdefs_from(tree: ast.AST):
+
+def get_all_funcdefs_from(tree: ast.AST) -> List[FuncDef]:
     return [
         n for n in ast.walk(tree)
         if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))

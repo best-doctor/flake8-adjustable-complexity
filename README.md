@@ -17,7 +17,12 @@ blacklist inside the function. If actual complexity overcomes max calculated
 complexity, the plugin reports an error.
 
 Max allowed cyclomatic complexity can be configured via
-`--max-mccabe-complexity` option.
+`--max-mccabe-complexity` (or `--max-adjustable-complexity`) option. The plugin
+also accepts `--per-path-max-adjustable-complexity` to define a simple per-path
+complexity settings. The value of the option must be a comma-delimited list
+of `<path>:<complexity>` pairs.
+
+Both options also can be specified via `[flake8]` section of `setup.cfg`.
 
 ## Installation
 
