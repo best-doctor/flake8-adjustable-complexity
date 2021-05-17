@@ -1,7 +1,6 @@
 from typing import Optional
 
-from setuptools import setup, find_packages
-
+from setuptools import find_packages, setup
 
 package_name = 'flake8_adjustable_complexity'
 
@@ -41,7 +40,7 @@ setup(
     ],
     entry_points={
         'flake8.extension': [
-            'CAC001 = flake8_adjustable_complexity.checker:CyclomaticComplexityAjustableChecker',
+            'CAC001 = flake8_adjustable_complexity.checker:CyclomaticComplexityAdjustableChecker',
         ],
     },
     url='https://github.com/best-doctor/flake8-adjustable-complexity',

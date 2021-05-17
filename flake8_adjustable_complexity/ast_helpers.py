@@ -7,10 +7,7 @@ FuncDef = Union[ast.FunctionDef, ast.AsyncFunctionDef]
 
 
 def get_all_funcdefs_from(tree: ast.AST) -> List[FuncDef]:
-    return [
-        n for n in ast.walk(tree)
-        if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))
-    ]
+    return [n for n in ast.walk(tree) if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))]
 
 
 def extract_all_vars_in_node(ast_tree: ast.AST) -> List[str]:
