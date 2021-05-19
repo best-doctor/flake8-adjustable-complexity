@@ -12,23 +12,35 @@ others, so a reader doesn't have to remember meaning of a variable
 together with other logic for a long time.
 
 This plugin calculates max allowed cyclomatic complexity for each function
-separately. Default is 7 and it is decreased by 2 for each variable from
+separately. Default is 7, and it is decreased by 2 for each variable from
 blacklist inside the function. If actual complexity overcomes max calculated
 complexity, the plugin reports an error.
 
-Max allowed cyclomatic complexity can be configured via
-`--max-mccabe-complexity` (or `--max-adjustable-complexity`) option. The plugin
-also accepts `--per-path-max-adjustable-complexity` to define a simple per-path
-complexity settings. The value of the option must be a comma-delimited list
-of `<path>:<complexity>` pairs.
+Currently, the following errors are reported:
 
-Both options also can be specified via `[flake8]` section of `setup.cfg`.
+| Code    | Description |
+| ------- | ----------- |
+| **CAC001** | `func` is too complex (`complexity` > `max allowed complexity`) |
+| **CAC002** | `func` is too complex (`complexity`). Bad variable names penalty is too high (`penalty`) |
 
 ## Installation
 
 ```terminal
 pip install flake8-adjustable-complexity
 ```
+
+## Configuration
+
+The plugin has the following configuration options:
+
+* `--max-mccabe-complexity` (or `--max-adjustable-complexity`) - Max allowed cyclomatic complexity.
+* `--per-path-max-adjustable-complexity` - Per-path complexity settings.
+  The value of the option must be a comma-separated list of `<path>:<complexity>` pairs.
+* `--var-names-extra-blacklist` - Comma-separated list of bad variable names to blacklist.
+  Each variable will affect the max allowed complexity.
+* `--var-names-whitelist` - Comma-separated list of bad variable names to whitelist.
+
+All options also can be specified via `[flake8]` section of `setup.cfg`.
 
 ## Example
 
@@ -48,7 +60,7 @@ Usage:
 
 ```terminal
 $ flake8 test.py
-test.py:1:1: CAC001 is too complex (4 > 1)
+test.py:1:1: CAC001 foo is too complex (4 > 1)
 ```
 
 ## Contributing
@@ -63,8 +75,6 @@ We would love you to contribute to our project. It's simple:
 
 Here are useful tips:
 
-- You can run all checks and tests with `make check`.
-  Please do it before TravisCI does.
-- We use [BestDoctor python styleguide](https://github.com/best-doctor/guides/blob/master/guides/en/python_styleguide.md).
-- We respect [Django CoC](https://www.djangoproject.com/conduct/).
-  Make soft, not bullshit.
+* You can run all checks and tests with `make check`. Please do it before TravisCI does.
+* We use [BestDoctor python styleguide](https://github.com/best-doctor/guides/blob/master/guides/en/python_styleguide.md).
+* We respect [Django CoC](https://www.djangoproject.com/conduct/). Make soft, not bullshit.

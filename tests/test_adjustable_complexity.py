@@ -1,33 +1,78 @@
+import pytest
 from conftest import run_validator_for_test_file
 
-
-def test_get_error_for_too_complex_file():
-    errors = run_validator_for_test_file('too_complex.py')
-    assert len(errors) == 1
+from flake8_adjustable_complexity.violations import ComplexityViolation, PenaltyTooHighViolation
 
 
-def test_get_error_for_not_too_complex_file_with_blacklisted_vars():
-    errors = run_validator_for_test_file('too_complex_with_blacklisted.py')
-    assert len(errors) == 1
+@pytest.mark.parametrize(
+    ('filename', 'args', 'expected'),
+    [
+        (
+            'code_CAC001.py',
+            None,
+            {
+                (
+                    1,
+                    0,
+                    ComplexityViolation.format_message(
+                        func='foo',
+                        complexity=10,
+                        max_complexity=7,
+                    ),
+                ),
+            },
+        ),
+        (
+            'code_CAC002.py',
+            None,
+            {
+                (
+                    1,
+                    0,
+                    PenaltyTooHighViolation.format_message(
+                        func='foo',
+                        complexity=10,
+                        penalty=10,
+                    ),
+                ),
+            },
+        ),
+        (
+            'too_complex_with_blacklisted.py',
+            [
+                '--per-path-max-adjustable-complexity',
+                'too_complex_with_blacklisted.py:99',
+            ],
+            set(),
+        ),
+        (
+            'too_complex_with_blacklisted.py',
+            [
+                '--var-names-whitelist=vars,info,obj',
+            ],
+            set(),
+        ),
+        (
+            'too_complex_with_blacklisted.py',
+            [
+                '--var-names-whitelist=vars,info ',
+                '--max-adjustable-complexity=1',
+            ],
+            {
+                (
+                    1,
+                    0,
+                    PenaltyTooHighViolation.format_message(
+                        func='foo',
+                        complexity=4,
+                        penalty=2,
+                    ),
+                ),
+            },
+        ),
+    ],
+)
+def test_checker(filename, args, expected):
+    errors = run_validator_for_test_file(filename, args)
 
-
-def test_get_no_error_for_per_path_excluded_file():
-    errors = run_validator_for_test_file(
-        'too_complex_with_blacklisted.py',
-        args=[
-            '--per-path-max-adjustable-complexity',
-            'too_complex_with_blacklisted.py:99',
-        ],
-    )
-    assert len(errors) == 0
-
-
-def test_get_error_for_per_path_not_excluded_file():
-    errors = run_validator_for_test_file(
-        'too_complex.py',
-        args=[
-            '--per-path-max-adjustable-complexity',
-            'too_complex_with_blacklisted.py:99',
-        ],
-    )
-    assert len(errors) == 1
+    assert set(errors) == expected
