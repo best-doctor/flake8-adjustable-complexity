@@ -1,6 +1,6 @@
 # flake8-adjustable-complexity
 
-[![Build Status](https://travis-ci.org/best-doctor/flake8-adjustable-complexity.svg?branch=master)](https://travis-ci.org/best-doctor/flake8-adjustable-complexity)
+[![Build Status](https://github.com/best-doctor/flake8-adjustable-complexity/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/best-doctor/flake8-adjustable-complexity/actions/workflows/build.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/544649e16b4cf6645ad3/maintainability)](https://codeclimate.com/github/best-doctor/flake8-adjustable-complexity/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/544649e16b4cf6645ad3/test_coverage)](https://codeclimate.com/github/best-doctor/flake8-adjustable-complexity/test_coverage)
 
