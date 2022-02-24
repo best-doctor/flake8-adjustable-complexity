@@ -23,13 +23,14 @@ setup(
     description='A flake8 extension that checks cyclomatic complexity and calculates max complexity limit in runtime',
     long_description=get_long_description(),
     long_description_content_type='text/markdown',
+    python_requires='>=3.7',
     packages=find_packages(),
     include_package_data=True,
     keywords='flake8 annotations',
     version=get_version(),
     author='Ilya Lebedev',
     author_email='melevir@gmail.com',
-    install_requires=['setuptools'],
+    install_requires=['flake8'],
     classifiers=[
         'Framework :: Pytest',
         'Topic :: Software Development :: Testing',
@@ -37,6 +38,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
     ],
     entry_points={
         'flake8.extension': [
